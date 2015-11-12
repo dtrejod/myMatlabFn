@@ -3,7 +3,7 @@
 % Fourier Transform Magnitude (Only Positive Frequencies) SubProgram
 % By: Devin Trejo
 
-function [FTM f] = devFFTMag(Signal, fs, fftres)
+function [FTM, f] = devFFTMagdbm(Signal, fs, fftres)
     
     samL = length(Signal);
     
@@ -13,9 +13,9 @@ function [FTM f] = devFFTMag(Signal, fs, fftres)
     f = fs/2*linspace(0,1,NFFT/2+1);
     
     FTM = abs(Signalf(1:NFFT/2+1));
-    
+    FTM = mag2db(FTM)+30;
     plot(f,FTM);
     xlabel('frequency (Hz)')
-    ylabel('|FFT(input)|')
+    ylabel('Power (dbm)')
     title('Magnitude Spectrum')
 end
